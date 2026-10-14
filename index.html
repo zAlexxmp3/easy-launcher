@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Easy Launcher</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- PANTALLA WELCOME NEÓN -->
+    <div id="welcome-screen">
+        <div class="welcome-text" id="welcome-text">WELCOME</div>
+        <div class="welcome-line"></div>
+    </div>
+
+    <!-- APP PRINCIPAL -->
+    <div id="app" class="app-hidden">
+
+        <header>
+            <div class="header-left">
+                <img src="logo.svg" alt="Logo" class="logo-img">
+                <h1>Easy Launcher</h1>
+                <span class="subtitle">by Aztolfoo</span>
+            </div>
+            <div class="header-right">
+                <div class="search-box">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"/>
+                        <path d="m21 21-4.35-4.35"/>
+                    </svg>
+                    <input type="text" id="buscador" placeholder="Buscar...">
+                </div>
+                <button id="btn-tema" class="btn-icon" title="Cambiar tema">
+                    <span id="icono-tema">🌙</span>
+                </button>
+                <button id="btn-detectar" class="btn-secondary" title="Detectar juegos de Steam y Epic">
+                    🔍 Detectar
+                </button>
+                <div class="add-menu">
+                    <button id="btn-agregar" class="btn-primary">+ Añadir</button>
+                    <div class="add-dropdown" id="add-dropdown">
+                        <button data-tipo="juego">🎮 Ejecutable</button>
+                        <button data-tipo="web">🌐 Página web</button>
+                        <button data-tipo="carpeta">📁 Carpeta</button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <div class="barra-superior">
+                <div class="filtros" id="filtros">
+                    <button class="filtro activo" data-cat="todos">Todos</button>
+                    <button class="filtro" data-cat="Juegos">🎮 Juegos</button>
+                    <button class="filtro" data-cat="Webs">🌐 Webs</button>
+                    <button class="filtro" data-cat="Carpetas">📁 Carpetas</button>
+                    <button class="filtro" data-cat="Favoritos">⭐ Favoritos</button>
+                </div>
+                <div class="ordenar">
+                    <select id="ordenar">
+                        <option value="recientes">Recientes</option>
+                        <option value="nombre">Nombre A-Z</option>
+                        <option value="usados">Más usados</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="grid" id="grid"></div>
+
+            <div class="vacio" id="vacio" style="display:none;">
+                <div class="vacio-icono">🚀</div>
+                <p>No hay accesos todavía</p>
+                <span>Hacé click en "+ Añadir" o en "🔍 Detectar" para empezar</span>
+            </div>
+        </main>
+
+        <footer>
+            <span id="contador-total">0 accesos</span>
+            <span class="separador">·</span>
+            <span id="contador-favoritos">0 favoritos</span>
+        </footer>
+
+    </div>
+
+    <!-- MODAL WEB -->
+    <div class="modal-overlay" id="modal-web" style="display:none;">
+        <div class="modal">
+            <h2>Agregar página web</h2>
+            <input type="text" id="web-nombre" placeholder="Nombre (ej: Discord)">
+            <input type="text" id="web-url" placeholder="URL (ej: https://discord.com/app)">
+            <div class="modal-botones">
+                <button id="btn-cancelar-web" class="btn-secondary">Cancelar</button>
+                <button id="btn-guardar-web" class="btn-primary">Guardar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL DETECCIÓN -->
+    <div class="modal-overlay" id="modal-detectar" style="display:none;">
+        <div class="modal modal-grande">
+            <h2>🔍 Juegos detectados</h2>
+            <p id="detectar-resumen" class="detectar-resumen">Escaneando...</p>
+            <div id="detectar-lista" class="detectar-lista"></div>
+
+            <div id="detectar-manual" class="detectar-manual" style="display:none;">
+                <p class="detectar-manual-titulo">¿No encontró tus juegos? Elegí la carpeta manualmente:</p>
+                <div class="detectar-manual-botones">
+                    <button id="btn-elegir-steam" class="btn-secondary">📁 Carpeta de Steam</button>
+                    <button id="btn-elegir-epic" class="btn-secondary">📁 Carpeta de Epic</button>
+                </div>
+            </div>
+
+            <div class="modal-botones">
+                <button id="btn-cancelar-detectar" class="btn-secondary">Cancelar</button>
+                <button id="btn-guardar-detectar" class="btn-primary">Agregar seleccionados</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="renderer.js"></script>
+</body>
+</html>

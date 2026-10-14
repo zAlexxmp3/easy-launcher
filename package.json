@@ -1,0 +1,27 @@
+{
+  "name": "easy-launcher",
+  "version": "1.0.0",
+  "description": "Easy Launcher - Todos tus juegos y apps en un solo lugar",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder"
+  },
+  "author": "Astolfo",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^28.0.0",
+    "electron-builder": "^24.13.3"
+  },
+  "build": {
+    "appId": "com.adsg.easylauncher",
+    "productName": "Easy Launcher",
+    "win": {
+      "target": [
+        "nsis",
+        "portable"
+      ],
+      "icon": "logo.ico"
+    }
+  }
+}
